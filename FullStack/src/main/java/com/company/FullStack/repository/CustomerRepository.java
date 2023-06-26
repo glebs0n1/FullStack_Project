@@ -1,6 +1,7 @@
 package com.company.FullStack.repository;
 
 import com.company.FullStack.model.Customer;
+
 import java.util.List;
 
 public interface CustomerRepository {

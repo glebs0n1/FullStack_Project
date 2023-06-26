@@ -1,38 +1,47 @@
 package com.company.FullStack.service;
 
-import com.company.FullStack.model.Customer;
-import com.company.FullStack.repository.CustomerRepository;
+import com.company.FullStack.dto.CustomerDTO;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerServiceImpl implements CustomerService {
-    private final CustomerRepository customerRepository;
+    private List<CustomerDTO> customers = new ArrayList<>();
 
-    public CustomerServiceImpl(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+    @Override
+    public List<CustomerDTO> getAllCustomers() {
+        return customers;
     }
 
     @Override
-    public List<Customer> getAllCustomers() {
-        return customerRepository.getAllCustomers();
+    public CustomerDTO getCustomerById(Long id) {
+        for (CustomerDTO customer : customers) {
+            if (customer.getId().equals(id)) {
+                return customer;
+            }
+        }
+        return null;
     }
 
     @Override
-    public Customer getCustomerById(Long id) {
-        return customerRepository.getCustomerById(id);
+    public CustomerDTO createCustomer(CustomerDTO customerDTO) {
+        customers.add(customerDTO);
+        return customerDTO;
     }
 
     @Override
-    public Customer createCustomer(Customer customer) {
-        return customerRepository.createCustomer(customer);
-    }
-
-    @Override
-    public Customer updateCustomer(Customer customer) {
-        return customerRepository.updateCustomer(customer);
+    public CustomerDTO updateCustomer(CustomerDTO customerDTO) {
+        for (int i = 0; i < customers.size(); i++) {
+            if (customers.get(i).getId().equals(customerDTO.getId())) {
+                customers.set(i, customerDTO);
+                return customerDTO;
+            }
+        }
+        return null;
     }
 
     @Override
     public void deleteCustomer(Long id) {
-        customerRepository.deleteCustomer(id);
+        customers.removeIf(customer -> customer.getId().equals(id));
     }
 }
