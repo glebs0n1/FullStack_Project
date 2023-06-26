@@ -1,37 +1,38 @@
 package com.company.FullStack.service;
 
 import com.company.FullStack.model.Customer;
-
+import com.company.FullStack.repository.CustomerRepository;
 import java.util.List;
 
 public class CustomerServiceImpl implements CustomerService {
+    private final CustomerRepository customerRepository;
+
+    public CustomerServiceImpl(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
+
     @Override
     public List<Customer> getAllCustomers() {
-        // Implementation goes here
-        return null; // Replace with your actual logic
+        return customerRepository.getAllCustomers();
     }
 
     @Override
     public Customer getCustomerById(Long id) {
-        // Implementation goes here
-        return null; // Replace with your actual logic
+        return customerRepository.getCustomerById(id);
     }
 
     @Override
     public Customer createCustomer(Customer customer) {
-        // Implementation goes here
-        return null; // Replace with your actual logic
+        return customerRepository.createCustomer(customer);
     }
 
     @Override
     public Customer updateCustomer(Customer customer) {
-        // Implementation goes here
-        return null; // Replace with your actual logic
+        return customerRepository.updateCustomer(customer);
     }
 
     @Override
     public void deleteCustomer(Long id) {
-        // Implementation goes here
-        // No return statement needed for void methods
+        customerRepository.deleteCustomer(id);
     }
 }

@@ -1,7 +1,6 @@
 package com.company.FullStack.service;
 
 import com.company.FullStack.model.Customer;
-
 import java.util.List;
 
 public interface CustomerService {
